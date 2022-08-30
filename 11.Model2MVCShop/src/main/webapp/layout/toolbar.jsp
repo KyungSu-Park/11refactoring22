@@ -58,7 +58,7 @@
 		                         <span >판매상품관리</span>
 		                         <span class="caret"></span>
 		                     </a>
-		                     <ul class="dropdown-menu">
+		                     <ul class="dropdown-menu" target="rightFrame">
 		                         <li align="center">판매상품등록</li>
 		                         
 		                           <li class="divider"></li>
@@ -90,7 +90,7 @@
 	                     </ul>
 	                 </li>
 	                 
-	                 <li><a href="#">etc...</a></li>
+	                 
 	             </ul>
 	             
 	             <ul class="nav navbar-nav navbar-right">
@@ -158,14 +158,16 @@
 	 		
 		});
 		
-	/*  	$( ".dropdown-menu:contains('판매상품등록')" ).on("click" , function() {
+	  	$( ".dropdown-menu:contains('판매상품등록')" ).on("click" , function() {
 	 		//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-			$(self.location).attr("href","/user/getUser?userId=${sessionScope.user.userId}");
+	  		/* $(window.parent.frames["rightFrame"].self.location).attr("href","/product/addProduct/");*/
+	  		$(self.location).attr("href","/product/addProduct/"); 
 		});
 	 	
 	 	$( ".dropdown-menu:contains('판매상품관리')" ).on("click" , function() {
 	 		//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-			$(self.location).attr("href","/user/getUser?userId=${sessionScope.user.userId}");
+	 		/* $(window.parent.frames["rightFrame"].self.location).attr("href","/product/listProduct?menu=manage"); */
+	 		$(self.location).attr("href", "/product/listProduct");
 		});
-		 */
+		 
 	</script>  

@@ -65,7 +65,7 @@
 	 <select  id="getProductList"  parameterType="search"	resultMap="productSelectMap">
 	 		SELECT *
 	  	FROM (	SELECT inner_table.* , ROWNUM AS row_seq
-	  					FROM		(	SELECT prod_no , prod_name , prod_detail,  price, manufacture_day
+	  					FROM		(	SELECT prod_no , prod_name , prod_detail,  price, manufacture_day , image_file
 											FROM product
 											<if test="searchCondition != null">
 												<where>
@@ -93,7 +93,7 @@
 	  			prod_detail	,
 	  			price	
 				FROM product
-					<if test="searchCondition != null || maxPrice != 0">
+					<if test="searchCondition != null">
 						<where>
 							<if test="searchCondition == 0 and searchKeyword !='' ">
 						 		AND prod_no = #{searchKeyword}
@@ -103,9 +103,7 @@
 					 			prod_name LIKE '%${searchKeyword}%'
 							</if>
 							
-							<if test="maxPrice != null and maxPrice != ''" >
-					 			AND price BETWEEN #{minPrice} AND #{maxPrice}
-							</if>
+						
 						</where>
 					</if> 	
 								) countTable						
