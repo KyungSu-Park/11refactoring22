@@ -53,4 +53,25 @@ public class UserRestController {
 		
 		return dbUser;
 	}
+	
+	@RequestMapping(value = "json/updateUser/{userId}", method = RequestMethod.GET)
+	public User updateUser(@PathVariable String userId) throws Exception {
+		
+		System.out.println("/user/json/updateUser : GET");
+		
+		return userService.getUser(userId);
+	}
+	
+	@RequestMapping(value = "json/updateUser", method = RequestMethod.POST)
+	public User updateUser(@RequestBody User user) throws Exception {
+		
+		System.out.println("/user/json/updateUser : POST");
+		
+		userService.updateUser(user);
+		
+		user = userService.getUser(user.getUserId());
+		
+		return user;
+	}
+	
 }

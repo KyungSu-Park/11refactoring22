@@ -161,7 +161,7 @@
 				  <button type="button" class="btn btn-default">검색</button>
 				  
 				  <!-- PageNavigation 선택 페이지 값을 보내는 부분 -->
-				  <input type="hidden" id="currentPage" name="currentPage" value=""/>
+				  <input type="hidden" id="currentPage" name="currentPage" value="1"/>
 				  
 				</form>
 	    	</div>

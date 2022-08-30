@@ -50,6 +50,13 @@
 			});
 		});
 		
+		$( function() {
+			//==> 추가된부분 : "addUser"  Event 연결
+			$("a[href='#' ]:contains('상품검색')").on("click" , function() {
+				
+			});
+		});
+		
 	</script>	
 	
 </head>
@@ -92,8 +99,11 @@
 		<div class="row">
 	
 			<!--  Menu 구성 Start /////////////////////////////////////-->     	
+		
 			<div class="col-md-3">
-		        
+ 			
+ <c:if test="${!empty user}">   	
+ 
 		       	<!--  회원관리 목록에 제목 -->
 				<div class="panel panel-primary">
 					<div class="panel-heading">
@@ -109,7 +119,7 @@
 						 </li>
 					</ul>
 		        </div>
-               
+  
                
 				<div class="panel panel-primary">
 					<div class="panel-heading">
@@ -125,20 +135,25 @@
 					</ul>
 		        </div>
                
-               
+</c:if> 
 				<div class="panel panel-primary">
 					<div class="panel-heading">
 							<i class="glyphicon glyphicon-shopping-cart"></i> 상품구매
 	    			</div>
 					<ul class="list-group">
-						 <li class="list-group-item"><a href="#">상품검색</a></li>
-						  <li class="list-group-item">
-						  	<a href="#">구매이력조회</a> <i class="glyphicon glyphicon-ban-circle"></i>
-						  </li>
+						 <li class="list-group-item"><a href="#">상품검색</a></li>		
+ <c:if test="${ ! empty user }">
+ 	
+						  
 						 <li class="list-group-item">
 						 	<a href="#">최근본상품</a> <i class="glyphicon glyphicon-ban-circle"></i>
 						 </li>
+						  <li class="list-group-item">
+						  	<a href="#">구매이력조회</a> <i class="glyphicon glyphicon-ban-circle"></i>
+						  </li> 
 					</ul>
+ </c:if>					
+					
 				</div>
 				
 			</div>
@@ -148,9 +163,8 @@
 	 	 	<div class="col-md-9">
 				<div class="jumbotron">
 			  		<h1>Model2 MVC Shop</h1>
-			  		<p>로그인 후 사용가능...</p>
 			  		<p>로그인 전 검색만 가능합니다.</p>
-			  		<p>회원가입 하세요.</p>
+			  		<p>로그인 또는 회원가입 하세요.</p>
 			  		
 			  		<div class="text-center">
 			  			<a class="btn btn-info btn-lg" href="#" role="button">회원가입</a>
