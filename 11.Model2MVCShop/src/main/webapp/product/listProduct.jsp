@@ -44,6 +44,22 @@
      <!--  ///////////////////////// JavaScript ////////////////////////// -->
 	<script type="text/javascript">
 	
+	
+	//============= userId 에 회원정보보기  Event  처리(Click) =============	
+	 $(function() {
+	
+		//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
+		$( "td:nth-child(3)" ).on("click" , function() {
+			/* alert($(this).parent().find("td:eq(0)").text()); */
+			
+			 self.location ="/product/getProduct?prodNo="+$(this).parent().find("td:eq(0)").text() + "&menu=${menu}";
+		});
+					
+		//==> userId LINK Event End User 에게 보일수 있도록 
+		$( "td:nth-child(3)" ).css("color" , "red");
+		
+	});		
+	
 		//=============    검색 / page 두가지 경우 모두  Event  처리 =============	
 		function fncGetProductList(currentPage) {
 			$("#currentPage").val(currentPage)
@@ -59,7 +75,7 @@
 		//alert(maxHeight);
 		
 		var currentScroll = Math.ceil($(window).scrollTop() + $(window).height());
-	
+		
 		
 		
 		if(currentScroll >= maxHeight) {
@@ -88,8 +104,12 @@
 						
 						var value = "";
 						
+				
+
+						
 						$.each(data, function(index, item) {
 							for(i=0; i<item.length; i++){
+
 							
 							value += '<tr class="ct_list_pop">'
 									+ '<td align="left"  height="200">' + item[i].prodNo + '</td>'
@@ -99,19 +119,35 @@
 									+ '<td align="left"   height="200">' + item[i].price + '</td>'
 									+ '<td></td>'
 									+ '<td align="left"  height="200">' +item[i].prodDetail + '</td>'
-									+ 
+									+ '<td></td>'
 									+ '<td align="center" height="200">'
-									+ '<img src="/images/uploadFiles/' + item[i].fileName + '" width="200" height="200"> </td>'
-									+ '<tr><td id="' + item[i].prodNo +'" colspan="11" bgcolosr="D6D7D6" height="1"></td></tr>';
-					
-							alert(item[i].fileName);
+									+ '<img src=/images/uploadFiles/' + item[i].fileName + '  width = "200" height="200"> </td>';
 									
+					
+							/* alert(item[i].fileName); */
+					
+							
+							
 							}		
 						});
 					
 						/* alert(value); */
 						
 						$(value).appendTo($("table"));
+						
+						
+						
+						$( "td:nth-child(3)" ).on("click" , function() {
+							self.location ="/product/getProduct?prodNo="+$(this).parent().find("td:eq(0)").text() + "&menu=${menu}";
+						});
+										
+						//==> userId LINK Event End User 에게 보일수 있도록 
+						$( "td:nth-child(3)" ).css("color" , "red");
+						
+						
+						
+						
+						
 						
 						count++;
 					} 
@@ -138,25 +174,14 @@
 		 });
 		
 		
-		//============= userId 에 회원정보보기  Event  처리(Click) =============	
-		 $(function() {
-		
-			//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-			$( "td:nth-child(3)" ).on("click" , function() {
-				 self.location ="/user/getProduct?prodNo="+$(this).text().trim();
-			});
-						
-			//==> userId LINK Event End User 에게 보일수 있도록 
-			$( "td:nth-child(3)" ).css("color" , "red");
-			
-		});	
+	
 		
 		
 		//============= userId 에 회원정보보기  Event  처리 (double Click)=============
 		 $(function() {
 			 
 			//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-			$(  "td:nth-child(5) > i" ).on("click" , function() {
+	/* 		$(  "td:nth-child(5) > i" ).on("click" , function() {
 
 					var userId = $(this).next().val();
 				
@@ -184,7 +209,7 @@
 						});
 						////////////////////////////////////////////////////////////////////////////////////////////
 					
-			});
+			}); */
 			
 			//==> userId LINK Event End User 에게 보일수 있도록 
 			$( ".ct_list_pop td:nth-child(3)" ).css("color" , "red");

@@ -52,27 +52,27 @@
 	                 </li>
 	                 
 	              <!-- 판매상품관리 DrowDown  -->
-	               <c:if test="${sessionScope.user.role == 'admin'}">
+	               
 		              <li class="dropdown">
-		                     <a  href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+		                     <a  href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" id=product>
 		                         <span >판매상품관리</span>
 		                         <span class="caret"></span>
 		                     </a>
 		                     <ul class="dropdown-menu" target="rightFrame">
 		                         <li align="center">판매상품등록</li>
-		                         
+		                       <c:if test="${sessionScope.user.role == 'admin'}">  
 		                           <li class="divider"></li>
 		                         <li align="center">판매상품관리</li>
 		                         
-		                     
+		                       </c:if>
 		                         
 		                     </ul>
 		                </li>
-	                 </c:if>
+	               
 	                 
 	              <!-- 구매관리 DrowDown -->
 	              <li class="dropdown">
-	                     <a  href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+	                     <a  href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" id=product2>
 	                         <span >상품구매</span>
 	                         <span class="caret"></span>
 	                     </a>
@@ -119,55 +119,54 @@
 		//============= 회원정보조회 Event  처리 =============	
 		 $(function() {
 			//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-		 	$(".dropdown-menu:contains('회원정보조회')").on("click" , function() {
-				//$(self.location).attr("href","/user/logout");
-				self.location = "/user/listUser"
-			}); 
-		 });
+		 
+			
+		 
 		
 		//=============  개인정보조회회 Event  처리 =============	
-	 	$( ".dropdown-menu:contains('개인정보조회')" ).on("click" , function() {
+	 	$( ".dropdown-menu li:contains('개인정보조회')" ).on("click" , function() {
 	 		//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-			$(self.location).attr("href","/user/getUser?userId=${sessionScope.user.userId}"); 
+			$(self.location).attr("href","/user/getUser?userId=${sessionScope.user.userId}");
 	 		
-	/* 		$.ajax( 
-					{
-						url : "/user/json/getUser/+${sessionScope.user.userId}" ,
-						method : "GET" ,
-						dataType : "json" ,
-						headers : {
-							"Accept" : "application/json",
-							"Content-Type" : "application/json"
-						},
-						success : function(JSONData , status) {
-
-							//Debug...
-							//alert(status);
-							//Debug...
-							//alert("JSONData : \n"+JSONData);
-							
-							
-													
-														
-							//Debug...									
-							//alert(displayValue);
-					
-						}
-					}); */
+	 		
+		});
+			
+	 	$( ".dropdown-menu li:contains('회원정보조회')" ).on("click" , function() {
+	 		//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
+	 		$(self.location).attr("href", "/user/listUser");
 	 		
 	 		
 		});
 		
-	  	$( ".dropdown-menu:contains('판매상품등록')" ).on("click" , function() {
+	  	$(".dropdown-menu li:contains('판매상품등록')").on("click" , function() {
 	 		//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
 	  		/* $(window.parent.frames["rightFrame"].self.location).attr("href","/product/addProduct/");*/
-	  		$(self.location).attr("href","/product/addProduct/"); 
-		});
+	  		self.location= "/product/addProductView.jsp"
+		
+	  		
+	  	});
 	 	
-	 	$( ".dropdown-menu:contains('판매상품관리')" ).on("click" , function() {
+	 	$(".dropdown-menu li:contains('판매상품관리')").on("click" , function() {
+	 		//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
+	 		/* $(window.parent.frames["rightFrame"].self.location).attr("href","/product/listProduct?menu=manage"); */
+	 		$(self.location).attr("href", "/product/listProduct?menu=manage");
+		
+	  	});
+	 	
+		 
+		$(".dropdown-menu li:contains('상 품 검 색')").on("click" , function() {
 	 		//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
 	 		/* $(window.parent.frames["rightFrame"].self.location).attr("href","/product/listProduct?menu=manage"); */
 	 		$(self.location).attr("href", "/product/listProduct");
-		});
+		
+	  	});
+	 	
 		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 });
 	</script>  

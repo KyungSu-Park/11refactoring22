@@ -31,7 +31,7 @@
 	<!--  ///////////////////////// CSS ////////////////////////// -->
 	<style></style>
    	
-   	<!--  ///////////////////////// JavaScript ////////////////////////// -->
+   	<!--  ///////////////////////// JavaScript  index ////////////////////////// -->
 	<script type="text/javascript">
 		
 		//============= 회원원가입 화면이동 =============
@@ -52,9 +52,14 @@
 		
 		$( function() {
 			//==> 추가된부분 : "addUser"  Event 연결
-			$("a[href='#' ]:contains('상품검색')").on("click" , function() {
-				
-			});
+			$(".list-group li:contains('상 품 검 색')").on("click" , function() {
+		 		//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
+		 		/* $(window.parent.frames["rightFrame"].self.location).attr("href","/product/listProduct?menu=manage"); */
+		 		
+		 		$(self.location).attr("href", "/product/listProduct");
+			
+		  	});
+		
 		});
 		
 	</script>	
@@ -102,25 +107,29 @@
 		
 			<div class="col-md-3">
  			
- <c:if test="${!empty user}">   	
+ <c:if test="${user.role=='admin'}">   	
  
 		       	<!--  회원관리 목록에 제목 -->
 				<div class="panel panel-primary">
 					<div class="panel-heading">
 						<i class="glyphicon glyphicon-heart"></i> 회원관리
          			</div>
+
          			<!--  회원관리 아이템 -->
 					<ul class="list-group">
 						 <li class="list-group-item">
 						 	<a href="#">개인정보조회</a> <i class="glyphicon glyphicon-ban-circle"></i>
-						 </li>
+						 </li>  	
+
+	 
 						 <li class="list-group-item">
 						 	<a href="#">회원정보조회</a> <i class="glyphicon glyphicon-ban-circle"></i>
 						 </li>
 					</ul>
 		        </div>
-  
-               
+</c:if>
+<c:if test="${!empty user }">
+               <!-- 인터셉터 할때 권한자가 어드민이 아니면 리젝트 -->
 				<div class="panel panel-primary">
 					<div class="panel-heading">
 							<i class="glyphicon glyphicon-briefcase"></i> 판매상품관리
@@ -135,13 +144,13 @@
 					</ul>
 		        </div>
                
-</c:if> 
+</c:if>
 				<div class="panel panel-primary">
 					<div class="panel-heading">
 							<i class="glyphicon glyphicon-shopping-cart"></i> 상품구매
 	    			</div>
 					<ul class="list-group">
-						 <li class="list-group-item"><a href="#">상품검색</a></li>		
+						 <li class="list-group-item">상 품 검 색</a></li>		
  <c:if test="${ ! empty user }">
  	
 						  
@@ -159,17 +168,52 @@
 			</div>
 			<!--  Menu 구성 end /////////////////////////////////////-->   
 
-	 	 	<!--  Main start /////////////////////////////////////-->   		
-	 	 	<div class="col-md-9">
-				<div class="jumbotron">
-			  		<h1>Model2 MVC Shop</h1>
-			  		<p>로그인 전 검색만 가능합니다.</p>
-			  		<p>로그인 또는 회원가입 하세요.</p>
+	 	 	<!--  Main start /////////////////////////////////////-->   	
+	 	 		  		
 			  		
-			  		<div class="text-center">
-			  			<a class="btn btn-info btn-lg" href="#" role="button">회원가입</a>
-			  			<a class="btn btn-info btn-lg" href="#" role="button">로 그 인</a>
-			  		</div>
+	 	 	<div class="col-md-9">
+  
+	      <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" width="300" height="300">
+	        <ol class="carousel-indicators" width="300" height="300">
+	          <li data-target="#carousel-example-generic" data-slide-to="0" class="active" width="300" height="300"></li>
+	          <li data-target="#carousel-example-generic" data-slide-to="1" width="300" height="300"></li>
+	          <li data-target="#carousel-example-generic" data-slide-to="2" width="300" height="300"></li>
+	          <li data-target="#carousel-example-generic" data-slide-to="3" width="300" height="300"></li>
+	        </ol>
+	        
+	        <div class="carousel-inner" role="listbox" width="500" height="300">
+	          
+	          <div class="item active">
+	            <img src="images/1.jpg"  width="300" height="300">
+	          </div>
+	          
+	          <div class="item">
+	            <img src="images/2.jpg"  width="300" height="300">
+	          </div>
+	          
+	           <div class="item">
+	            <img src="images/3.png"  width="300" height="300">
+	          </div>
+	          
+	           <div class="item">
+	            <img src="images/4.jpg"  width="300" height="300">
+	          </div>
+	          
+	        </div>
+	        
+	        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+	          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+	          <span class="sr-only">Previous</span>
+	        </a>
+	        
+	        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+	          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+	          <span class="sr-only">Next</span>
+	        </a>
+	     </div>
+	</div>
+			  	
+		
 			  	
 			  	</div>
 	        </div>

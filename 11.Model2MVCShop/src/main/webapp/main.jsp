@@ -4,6 +4,8 @@
 <!--  ///////////////////////// JSTL  ////////////////////////// -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
+
 <!DOCTYPE html>
 
 <html lang="ko">
@@ -33,12 +35,73 @@
         }
    	</style>
    	
-     <!--  ///////////////////////// JavaScript ////////////////////////// -->
-	 	
+     <!--  ///////////////////////// JavaScript main////////////////////////// -->
+	    	<script type="text/javascript">
+	
+		//============= logout Event  처리 =============	
+		 $(function() {
+			//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
+		 	$("a:contains('로그아웃')").on("click" , function() {
+				$(self.location).attr("href","/user/logout");
+				//self.location = "/user/logout"
+			}); 
+		 
+		
+		//============= 회원정보조회 Event  처리 =============	
+		 
+			//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
+		 	$(".list-group li:contains('회원정보조회')").on("click" , function() {
+		 		
+				//$(self.location).attr("href","/user/logout");
+				self.location = "/user/listUser"
+			}); 
+		 
+		
+		//=============  개인정보조회회 Event  처리 =============	
+	 	$( ".list-group li:contains('개인정보조회')" ).on("click" , function() {
+	 		
+	 		//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
+			$(self.location).attr("href","/user/getUser?userId=${sessionScope.user.userId}");
+	 		
+	 		
+		});
+
+		//=============  판매상품등록 Event  처리 =============	
+	  	$( ".list-group li:contains('판매상품등록')" ).on("click" , function() {
+	 		//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
+	  		/* $(window.parent.frames["rightFrame"].self.location).attr("href","/product/addProduct/");*/
+	  		self.location="/product/addProductView.jsp"
+		});
+	  //=============  판매상품등록 Event  처리 =============	
+	 	$( ".list-group li:contains('판매상품관리')" ).on("click" , function() {
+	 		//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
+	 		/* $(window.parent.frames["rightFrame"].self.location).attr("href","/product/listProduct?menu=manage"); */
+	 		$(self.location).attr("href", "/product/listProduct");
+		
+			}); 
+	 });
+		
+			$( function() {
+				//==> 추가된부분 : "addUser"  Event 연결
+				$(".list-group li:contains('상 품 검 색')").on("click" , function() {
+			 		//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
+			 		/* $(window.parent.frames["rightFrame"].self.location).attr("href","/product/listProduct?menu=manage"); */
+			 		
+			 		$(self.location).attr("href", "/product/listProduct");
+				
+			  	});
+			
+			});
+		
+		
+	</script> 	
 	
 </head>
 	
-<body>
+
+  <body>
+ 
+
 
 	<!-- ToolBar Start /////////////////////////////////////-->
 	<jsp:include page="/layout/toolbar.jsp" />
@@ -52,11 +115,13 @@
         <p>J2SE , DBMS ,JDBC , Servlet & JSP, Java Framework , HTML5 , UI Framework 학습 후 Mini-Project 진행</p>
      </div>
     </div>
-
+	
 	<!-- 참조 : http://getbootstrap.com/css/   : container part..... -->
 	
 		<div class="container">
-		
+   <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+  
+   
 		<!-- 다단레이아웃  Start /////////////////////////////////////-->
 		<div class="row">
 	
@@ -70,27 +135,10 @@
          			</div>
          			<!--  회원관리 아이템 -->
 					<ul class="list-group">
-						 <li class="list-group-item">
-						 	<a href="#">개인정보조회</a> <i class="glyphicon glyphicon-circle"></i>
-						 </li>
-						 <li class="list-group-item">
-						 	<a href="#">회원정보조회</a> <i class="glyphicon glyphicon-circle"></i>
-						 </li>
-					</ul>
-		        </div>
-               
-               
-				<div class="panel panel-primary">
-					<div class="panel-heading">
-							<i class="glyphicon glyphicon-briefcase"></i> 판매상품관리
-         			</div>
-					<ul class="list-group">
-						 <li class="list-group-item">
-						 	<a href="#">판매상품등록</a> <i class="glyphicon glyphicon-circle"></i>
+						 <li class="list-group-item">개인정보조회<i class="glyphicon glyphicon-circle"></i>
 						 </li>
 						 <c:if test="${user.role=='admin'}">
-						 <li class="list-group-item">
-						 	<a href="#">판매상품관리</a> <i class="glyphicon glyphicon-circle"></i>
+						 <li class="list-group-item">회원정보조회<i class="glyphicon glyphicon-circle"></i>
 						 </li>
 						 </c:if>
 					</ul>
@@ -99,22 +147,83 @@
                
 				<div class="panel panel-primary">
 					<div class="panel-heading">
-							<i class="glyphicon glyphicon-shopping-cart"></i> 상품구매
-	    			</div>
+							<i class="glyphicon glyphicon-briefcase"></i>판매상품관리</div>
 					<ul class="list-group">
-						 <li class="list-group-item"><a href="#">상품검색</a></li>
-						  <li class="list-group-item">
-						  	<a href="#">구매이력조회</a> <i class="glyphicon glyphicon-circle"></i>
+						 <li class="list-group-item">판매상품등록<i class="glyphicon glyphicon-circle"></i>
+						 </li>
+						 <c:if test="${user.role=='admin'}">
+						 <li class="list-group-item">판매상품관리<i class="glyphicon glyphicon-circle"></i>
+						 </li>
+						 </c:if>
+					</ul>
+		        </div>
+               
+               
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+							<i class="glyphicon glyphicon-shopping-cart"></i>상품구매</div>
+					<ul class="list-group">
+						 <li class="list-group-item">상 품 검 색</li>
+						  <li class="list-group-item">구매이력조회<i class="glyphicon glyphicon-circle"></i>
 						  </li>
-						 <li class="list-group-item">
-						 	<a href="#">최근본상품</a> <i class="glyphicon glyphicon-circle"></i>
+						 <li class="list-group-item">최근본상품<i class="glyphicon glyphicon-circle"></i>
 						 </li>
 					</ul>
 				</div>
 				
+				
+				
+				
+			
+			
+			
 			</div>
 			<!--  Menu 구성 end /////////////////////////////////////-->   
+		   <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+    <div id="player"></div>
 
+    <script>
+      // 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // 3. This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '360',
+          width: '640',
+          videoId: 't9gAxG6eVMc',
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+
+      // 4. The API will call this function when the video player is ready.
+      function onPlayerReady(event) {
+        event.target.playVideo();
+      }
+
+      // 5. The API calls this function when the player's state changes.
+      //    The function indicates that when playing a video (state=1),
+      //    the player should play for six seconds and then stop.
+      var done = false;
+      function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.PLAYING && !done) {
+          setTimeout(stopVideo, 30000);
+          done = true;
+        }
+      }
+      function stopVideo() {
+        player.stopVideo();
+      }
+    </script>
 	 	   		
 	 	 	
 		</div>
@@ -125,7 +234,7 @@
 
 </body>
 
-  	 </div>
+  	
 
 </body>
 

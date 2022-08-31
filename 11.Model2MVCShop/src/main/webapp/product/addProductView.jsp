@@ -9,8 +9,13 @@
 	
 	<link rel="stylesheet" href="/css/admin.css" type="text/css">
 	
-	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>	
-	<script type="text/javascript" src="../javascript/calendar.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+	
+
+	
 	<script type="text/javascript">
 	
 	//=====기존Code 주석 처리 후  jQuery 변경 ======//
@@ -63,17 +68,20 @@
 	
 	$(function(){
 				
-		$("td.ct_btn01:contains('등록')").bind("click", function(){
+		$("button:contains('등록')").bind("click", function(){
+			
 			fncAddProduct();
 		});
 
-		$("td.ct_btn01:contains('취소')").bind("click", function(){
-			$("form")[0].reset();
+		$("button:contains('취소')").bind("click", function(){
+			
+			history.go(-1);
 		})
 		
 		$("img[src='../images/ct_icon_date.gif']").bind("click", function(){
 			
 			var manuDate = $("input[name='manuDate']");
+			/* alert("1"); */
 			
 			show_calendar('manuDate', manuDate.val());
 			
@@ -85,161 +93,86 @@
 
 </head>
 
-<body bgcolor="#ffffff" text="#000000">
+<body>
 
-<form name="detailForm">
-
-<table width="100%" height="37" border="0" cellpadding="0"	cellspacing="0">
-	<tr>
-		<td width="15" height="37">
-			<img src="/images/ct_ttl_img01.gif" width="15" height="37"/>
-		</td>
-		<td background="/images/ct_ttl_img02.gif" width="100%" style="padding-left: 10px;">
-			<table width="100%" border="0" cellspacing="0" cellpadding="0">
-				<tr>
-					<td width="93%" class="ct_ttl01">상품등록</td>
-					<td width="20%" align="right">&nbsp;</td>
-				</tr>
-			</table>
-		</td>
-		<td width="12" height="37">
-			<img src="/images/ct_ttl_img03.gif"	width="12" height="37"/>
-		</td>
-	</tr>
-</table>
-
-<table width="100%" border="0" cellspacing="0" cellpadding="0"	style="margin-top: 13px;">
-	<tr>
-		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
-	</tr>
-	<tr>
-		<td width="104" class="ct_write">
-			상품명 <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle">
-		</td>
-		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01">
-			<table width="100%" border="0" cellspacing="0" cellpadding="0">
-				<tr>
-					<td width="105">
-						<input type="text" id="prodName" name="prodName" class="ct_input_g" 
-									style="width: 100px; height: 19px" maxLength="20">
-					</td>
-				</tr>
-			</table>
-		</td>
-	</tr>
+	<!-- ToolBar Start /////////////////////////////////////-->
 	
-	<tr>
-		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
-	</tr>
+	<jsp:include page="/layout/toolbar.jsp"/>
+       
+        
+   	
+   	<!-- ToolBar End /////////////////////////////////////-->
 	
-	<tr>
-		<td width="104" class="ct_write">
-			수량 <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle">
-		</td>
-		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01">
-			<table width="100%" border="0" cellspacing="0" cellpadding="0">
-				<tr>
-					<td width="105">
-						<input type="text" id="prodQuantity" name="prodQuantity" class="ct_input_g" 
-									style="width: 100px; height: 19px" maxLength="20">
-					</td>
-				</tr>
-			</table>
-		</td>
-	</tr>
-	
-	<tr>
-		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
-	</tr>
-	<tr>
-		<td width="104" class="ct_write">
-			상품상세정보 <img	src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
-		</td>
-		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01">
-			<input type="text" id="prodDetail" name="prodDetail" class="ct_input_g" 
-						style="width: 100px; height: 19px" maxLength="10" minLength="6"/>
-		</td>
-	</tr>
-	<tr>
-		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
-	</tr>
-	<tr>
-		<td width="104" class="ct_write">
-			제조일자 <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
-		</td>
-		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01">
-			<input type="text" id="manuDate" name="manuDate" readonly="readonly" class="ct_input_g"  
-						style="width: 100px; height: 19px"	maxLength="10" minLength="6"/>
-			&nbsp;<img src="../images/ct_icon_date.gif" width="15" height="15"/>
-			
-		</td>
-	</tr>
-	<tr>
-		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
-	</tr>
-	<tr>
-		<td width="104" class="ct_write">
-			가격 <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
-		</td>
-		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01">
-			<input type="text" id="price" name="price" 	class="ct_input_g" 
-						style="width: 100px; height: 19px" maxLength="10">&nbsp;원
-		</td>
-	</tr>
-	<tr>
-		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
-	</tr>
+	<div class="container">
+		<div></div>
+		<div class="page-header text-center">상 품 등 록</div>
+		
+		<!-- form Start /////////////////////////////////////-->
+		<form class="form-horizontal">
+		
+		  <div class="form-group">
+		    <label for="prodName" class="col-sm-offset-1 col-sm-3 control-label">물품명</label>
+		    <div class="col-sm-4">
+		      <input type="text" class="form-control" id="prodName" name="prodName">
+		       <span id="helpBlock" class="help-block">
+		      	
+		      </span>
+		    </div>
+		    
+		  </div>
 
-	<tr>
-		<td width="104" class="ct_write">상품이미지</td>
-		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01">
-			<input multiple="multiple" type="file" name="image" class="ct_input_g" 
+		  <div class="form-group">
+		    <label for="prodDetail" class="col-sm-offset-1 col-sm-3 control-label">상품 상세정보</label>
+		    <div class="col-sm-4">
+		      <input type="text" class="form-control" id="prodDetail" name="prodDetail" >
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label for="prodQuantity" class="col-sm-offset-1 col-sm-3 control-label">수량</label>
+		    <div class="col-sm-4">
+		      <input type="text" class="form-control" id="prodQuantity" name="prodQuantity" >
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label for="userName" class="col-sm-offset-1 col-sm-3 control-label">제조일자</label>
+		    <div class="col-sm-4">
+		      <input type="text" class="form-control" id="manuDate" name="manuDate">
+		      <img src="../images/ct_icon_date.gif" width="15" height="15"/>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label for="ssn" class="col-sm-offset-1 col-sm-3 control-label">가격</label>
+		    <div class="col-sm-4">
+		      <input type="text" class="form-control" id="price" name="price" placeholder="가격">
+		      <span id="helpBlock" class="help-block">
+		      	 <!-- <strong class="text-danger">" -  " 제외 13자리입력하세요</strong> -->
+		      </span>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label for="ssn" class="col-sm-offset-1 col-sm-3 control-label">상품이미지</label>
+		    <div class="col-sm-4">
+		      <input multiple="multiple" type="file" name="image" class="ct_input_g" 
 							style="width: 200px; height: 19px" maxLength="13"/>
-		</td>
-	</tr>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <div class="col-sm-offset-4  col-sm-4 text-center">
+		      <button type="button" class="btn btn-primary" >등록</button>
+			  <button type="button" class="btn btn-primary" >취소</button>
+		    </div>
+		  </div>
+		</form>
+		<!-- form Start /////////////////////////////////////-->
+		
+ 	</div>
+	<!--  화면구성 div end /////////////////////////////////////-->
 	
-	<tr>
-		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
-	</tr>
-</table>
-
-<table width="100%" border="0" cellspacing="0" cellpadding="0"	style="margin-top: 10px;">
-	<tr>
-		<td width="53%"></td>
-		<td align="right">
-		<table border="0" cellspacing="0" cellpadding="0">
-			<tr>
-				<td width="17" height="23">
-					<img src="/images/ct_btnbg01.gif" width="17" height="23"/>
-				</td>
-				<td background="/images/ct_btnbg02.gif" class="ct_btn01"  style="padding-top: 3px;">
-					등록
-				</td>
-				<td width="14" height="23">
-					<img src="/images/ct_btnbg03.gif" width="14" height="23"/>
-				</td>
-				<td width="30"></td>
-				<td width="17" height="23">
-					<img src="/images/ct_btnbg01.gif" width="17" height="23"/>
-				</td>
-				<td background="/images/ct_btnbg02.gif" class="ct_btn01"	 style="padding-top: 3px;">
-					취소
-				</td>
-				<td width="14" height="23">
-					<img src="/images/ct_btnbg03.gif" width="14" height="23"/>
-				</td>
-			</tr>
-		</table>
-		</td>
-	</tr>
-</table>
-
-</form>
 </body>
+
 </html>
