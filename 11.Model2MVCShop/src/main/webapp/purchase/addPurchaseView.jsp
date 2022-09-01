@@ -100,15 +100,15 @@
 				</tr>
 			
 				<tr>
-					<td class="ct_list_b" width="100">상품번호</td>
+					<td class="ct_list_b" width="100" height="200">상품번호</td>
 					<td class="ct_line02"></td>
-					<td class="ct_list_b" width="150">상품명</td>
+					<td class="ct_list_b" width="150" height="200">상품명</td>
 					<td class="ct_line02"></td>
-					<td class="ct_list_b" width="50">수량</td>
+					<td class="ct_list_b" width="50" height="200">수량</td>
 					<td class="ct_line02"></td>
-					<td class="ct_list_b" width="150">가격</td>
+					<td class="ct_list_b" width="150" height="200">가격</td>
 					<td class="ct_line02"></td>
-					<td class="ct_list_b" width="300">정보</td>	
+					<td class="ct_list_b" width="300" height="200">정보</td>	
 					<td class="ct_line02"></td>						
 				</tr>
 				

@@ -74,7 +74,7 @@ public class UserController {
 	}
 	
 
-	//@RequestMapping( value="/updateUser", method=RequestMethod.GET )
+	@RequestMapping( value="/updateUser", method=RequestMethod.GET )
 	public String updateUser( @RequestParam("userId") String userId , Model model ) throws Exception{
 
 		System.out.println("/user/updateUser : GET");
@@ -159,6 +159,7 @@ public class UserController {
 			search.setCurrentPage(1);
 		}
 		search.setPageSize(pageSize);
+		search.setPageUnit(pageUnit);
 		
 		// Business logic ผ๖วเ
 		Map<String , Object> map=userService.getUserList(search);

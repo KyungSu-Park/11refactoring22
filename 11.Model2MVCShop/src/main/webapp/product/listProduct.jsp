@@ -47,14 +47,31 @@
 	
 	//============= userId 에 회원정보보기  Event  처리(Click) =============	
 	 $(function() {
-	
 		//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
 		$( "td:nth-child(3)" ).on("click" , function() {
 			/* alert($(this).parent().find("td:eq(0)").text()); */
+			<c:if test="${!empty user }">
 			
-			 self.location ="/product/getProduct?prodNo="+$(this).parent().find("td:eq(0)").text() + "&menu=${menu}";
+			self.location ="/product/getProduct?prodNo="+$(this).parent().find("td:eq(0)").text() + "&menu=${menu}";
+			</c:if>
+			
+			<c:if test="${empty user}">
+			
+			alert(" 로그인을 하셔야 구매가 가능합니다.");
+			self.location="/user/loginView.jsp";
+			</c:if>
+			
+			
+			
+			
+			
 		});
-					
+
+
+		
+		
+		
+		
 		//==> userId LINK Event End User 에게 보일수 있도록 
 		$( "td:nth-child(3)" ).css("color" , "red");
 		
@@ -264,7 +281,8 @@
 				  <button type="button" class="btn btn-default">검색</button>
 				  
 				  <!-- PageNavigation 선택 페이지 값을 보내는 부분 -->
-				  <input type="hidden" id="currentPage" name="currentPage" value="1"/>
+				  <input type="hidden" id="currentPage" name="currentPage" value="0"/>
+				  
 				  
 				</form>
 	    	</div>

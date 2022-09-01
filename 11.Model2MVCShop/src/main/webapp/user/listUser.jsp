@@ -114,10 +114,56 @@
 			
 			//==> 아래와 같이 정의한 이유는 ??
 			$(".ct_list_pop:nth-child(4n+6)" ).css("background-color" , "whitesmoke");
-		});	
+		
+		
+		
+		
+			//=========================Auto Complete
 	
-	</script>
-	
+	$("#searchKeyword").autocomplete({
+		
+				source: function(request, response){
+						
+					$.ajax(
+									
+							{
+								url : "/user/json/userAutoComplete",
+								method : "POST",
+								dataType : "json",
+								contentType: "application/json",
+								data : JSON.stringify({
+									searchCondition : $(".form-control option:selected").val(),
+									searchKeyword : $("#searchKeyword").val()
+								}),
+								success : function(data) {
+									response(
+											$.map(data, function(item){
+												return{
+													
+													label : item.userId,
+													searchKeyword : item.userId	
+												}
+											})
+									) // response close
+								} ,
+								error : function() {
+								}
+								
+							}
+					) // $.ajax close
+				} 
+				, minLength: 1
+				, autoFocus : true
+				, delay : 20
+				, select : function(event, ui){
+				} // select : function close
+			}); // autocomplete close */
+		 });	
+</script>
+
+<body>
+
+
 </head>
 
 <body>

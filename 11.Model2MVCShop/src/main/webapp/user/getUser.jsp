@@ -38,8 +38,13 @@
 		//============= 회원정보수정 Event  처리 =============	
 		 $(function() {
 			//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-			 $( "button" ).on("click" , function() {
-					self.location = "/user/updateUser?userId=${user.userId}"
+			 $(".col-md-12 button:contains('회원정보수정')" ).bind("click" , function() {
+				 
+				  /* alert("1");  */
+					self.location = "/user/updateUser?userId=${user.userId}";
+							
+							
+							
 				});
 		});
 		

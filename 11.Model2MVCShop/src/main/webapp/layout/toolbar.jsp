@@ -6,7 +6,7 @@
 
 
 <!-- ToolBar Start /////////////////////////////////////-->
-<div class="navbar  navbar navbar-fixed-top">
+<div class="navbar  navbar-fixed-top">
 	
 	<div class="container">
 	       
@@ -31,6 +31,7 @@
 	             <ul class="nav navbar-nav">
 	             
 	              <!--  회원관리 DrowDown -->
+	              <c:if test="${!empty user}">
 	              <li class="dropdown">
 	                     <a  href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
 	                         <span >회원관리</span>
@@ -50,7 +51,7 @@
 	         
 	                     </ul>
 	                 </li>
-	                 
+	                
 	              <!-- 판매상품관리 DrowDown  -->
 	               
 		              <li class="dropdown">
@@ -68,7 +69,7 @@
 		                         
 		                     </ul>
 		                </li>
-	               
+	                </c:if>
 	                 
 	              <!-- 구매관리 DrowDown -->
 	              <li class="dropdown">
@@ -92,10 +93,17 @@
 	                 
 	                 
 	             </ul>
-	             
-	             <ul class="nav navbar-nav navbar-right">
-	                <li><a href="#">로그아웃</a></li>
+	
+			   <ul class="nav navbar-nav navbar-right">
+			   	<c:if test="${empty user }">
+	      		 <li><a href="#">로그인</a></li>
+	      		 </c:if>
+	      		 <c:if test="${!empty user}">
+	      		  <li><a href="#">로그아웃</a></li>
+	      		  </c:if>
+	      		  
 	            </ul>
+
 		</div>
 		<!-- dropdown hover END -->	       
 	    
@@ -115,6 +123,14 @@
 				//self.location = "/user/logout"
 			}); 
 		 });
+		
+		 $(function() {
+				//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
+			 	$("a:contains('로그인')").on("click" , function() {
+					$(self.location).attr("href","/user/loginView.jsp");
+					//self.location = "/user/logout"
+				}); 
+			 });
 		
 		//============= 회원정보조회 Event  처리 =============	
 		 $(function() {
