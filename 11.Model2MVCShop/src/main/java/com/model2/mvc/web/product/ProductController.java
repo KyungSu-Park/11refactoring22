@@ -58,9 +58,11 @@ public class ProductController {
 	
 //	@RequestMapping("/addProduct.do")
 //	, consumes = {MediaType.MULTIPART_FORM_DATA_VALUE}
+	
 	@RequestMapping(value = "addProduct", method = RequestMethod.POST)
 	public String addProduct(@ModelAttribute Product product, @RequestParam("image") MultipartFile[] file, Model model) throws Exception {
-		
+		System.out.println(product);
+	
 		System.out.println("/product/addProduct : POST");
 		
 		product.setManuDate(product.getManuDate().replaceAll("-", ""));
@@ -72,14 +74,14 @@ public class ProductController {
 		
 		for(MultipartFile files : file) {
 			fileCount++;
-			System.out.println("�뜝�럥�냱�뜝�럩逾� �뜝�럩逾좑옙逾녑뜝占� : " + files.getOriginalFilename());
+			System.out.println(files.getOriginalFilename());
 			sb.append(files.getOriginalFilename());
 			
 			if(fileCount != file.length) {
 				sb.append("*");
 			}
 			
-			String path = "C:\\Users\\903-16\\git\\repository4\\10.Model2MVCShop(AjaxKS2)\\src\\main\\webapp\\images\\uploadFiles\\";
+			String path = "C:\\Users\\903-16\\git\\11refactoring\\11.Model2MVCShop\\src\\main\\webapp\\images\\uploadFiles\\";
 			File saveFile = new File(path + files.getOriginalFilename());
 			
 			boolean isExists = saveFile.exists();
@@ -98,90 +100,8 @@ public class ProductController {
 		
 		return "forward:/product/addProduct.jsp";
 	}
-	
-//	@RequestMapping("/addProduct.do")
-	@RequestMapping(value = "addProduct", method = RequestMethod.GET)
-	public String addProduct(HttpServletRequest request) throws Exception {
-		System.out.println("/product/addProduct : GET & POST");
-		
-		if(FileUpload.isMultipartContent(request)) {
-			String temDir ="C:\\Users\\903-16\\git\\repository4\\10.Model2MVCShop(AjaxKS2)\\src\\main\\webapp\\images\\uploadFiles\\";
-			
-			DiskFileUpload fileUpload = new DiskFileUpload();
-			
-			fileUpload.setRepositoryPath(temDir);
-			
-			// 100MB
-			fileUpload.setSizeMax(1024 * 1024 * 10);
-			fileUpload.setSizeThreshold(1024 * 100);
-			
-			if(request.getContentLength() < fileUpload.getSizeMax()) {
-				Product product = new Product();
-				
-				StringTokenizer token = null;
-				
-				List fileItemList = fileUpload.parseRequest(request);
-				System.out.println(fileItemList);
-				int size = fileItemList.size();
-				
-				System.out.println( size);
-				
-				for(int i = 0 ; i < size ; i++) {
-					FileItem fileItem = (FileItem) fileItemList.get(i);
-					
-					if(fileItem.isFormField()) {
-						
-						if(fileItem.getFieldName().equals("manuDate")) {
-							token = new StringTokenizer(fileItem.getString("euc-kr"), "-");
-							String manuDate = token.nextToken() + token.nextToken() + token.nextToken();
-							product.setManuDate(manuDate);
-						} 
-						else if(fileItem.getFieldName().equals("prodName"))
-							product.setProdName(fileItem.getString("euc-kr"));
-						else if(fileItem.getFieldName().equals("prodDetail"))
-							product.setProdDetail(fileItem.getString("euc-kr"));
-						else if(fileItem.getFieldName().equals("price"))
-							product.setPrice(Integer.parseInt(fileItem.getString("euc-kr")));
-						
-					} else {
-						if(fileItem.getSize() > 0) {
-							int index = fileItem.getName().lastIndexOf("\\");
-							if(index == -1) {
-								index = fileItem.getName().lastIndexOf("\\");
-							}
-							
-							String fileName = fileItem.getName().substring(index + 1);
-							
-							product.setFileName(fileName);
-							
-							try {
-								File uploadedFile = new File(temDir, fileName);
-								fileItem.write(uploadedFile);
-							} catch (IOException e) {
-								System.out.println(e);
-							}
-						} else {
-							product.setFileName("../../images/empty.GIF");
-						}
-					} 
-				} // for
-				
-				productService.addProduct(product);
-				
-				request.setAttribute("product", product);
-				
-			} else {
-				int overSize = (request.getContentLength() / 1000000);
-				
-				
-				System.out.println("history.back();</script>");
-			}
-		} else {
-			
-		}
-		
-		return "redirect:/product/addProductView.jsp";
-	}
+
+
 		
 	//@RequestMapping("/getProduct.do")
 	@RequestMapping(value = "getProduct")
@@ -206,7 +126,7 @@ public class ProductController {
 		}
 		
 		Cookie cookie = new Cookie("history", URLEncoder.encode(history, "EUC-KR"));
-		System.out.println( " �뜎醫뤾텕 占쎌뜎 揶쏉옙 : "+history);
+		System.out.println(history);
 		System.out.println(cookie+"\n"+product+"\n");
 		
 		response.addCookie(cookie);
@@ -337,20 +257,20 @@ public class ProductController {
 	
 			if(product.getFileName().indexOf(fileName) == 0) {
 				product.setFileName(product.getFileName().replaceAll(fileName, ""));
-				System.out.println("�뜝�럩�굥�뜝�럩逾у뜝�럡�븢 �뜝�럥�냱�뜝�럩逾� �뜝�럩逾좑옙逾녑뜝占� : " + product.getFileName());
+				System.out.println( product.getFileName());
 			} else if (product.getFileName().indexOf(fileName) + fileName.length() == length) {
 				
 						
 				product.setFileName(product.getFileName().replaceAll(fileName, ""));
 				product.setFileName(product.getFileName().substring(0, product.getFileName().length()-1));
 				
-				System.out.println("�뜝�럩�굥�뜝�럩逾у뜝�럡�븢 �뜝�럥�냱�뜝�럩逾� �뜝�럩逾좑옙逾녑뜝占� : " + product.getFileName());
+				System.out.println( product.getFileName());
 					
 			} else {
 		
 				
 				product.setFileName(product.getFileName().replaceAll(fileName+"[*]", ""));
-				System.out.println("�뜝�럩�굥�뜝�럩逾у뜝�럡�븢 �뜝�럥�냱�뜝�럩逾� �뜝�럩逾좑옙逾녑뜝占� : " + product.getFileName());
+				System.out.println( product.getFileName());
 			}
 			
 		}else {

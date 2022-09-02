@@ -4,11 +4,15 @@
 <%@	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
+
+
 <!DOCTYPE html>
 <html>
 
 <head>
-	<title>상품정보수정</title>
+
+
+<title>상품정보수정</title>
 	
 	<link rel="stylesheet" href="/css/admin.css" type="text/css">
 	

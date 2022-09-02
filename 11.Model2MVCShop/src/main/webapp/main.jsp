@@ -20,7 +20,8 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
-	
+	     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">  
+	      <script src="https://unpkg.com/feather-icons@4.28.0/dist/feather.min.js"></script>
 	<!-- Bootstrap Dropdown Hover CSS -->
    <link href="/css/animate.min.css" rel="stylesheet">
    <link href="/css/bootstrap-dropdownhover.min.css" rel="stylesheet">
@@ -33,6 +34,10 @@
         body {
             padding-top : 70px;
         }
+        
+      
+     
+        
    	</style>
    	
      <!--  ///////////////////////// JavaScript main////////////////////////// -->
@@ -195,9 +200,9 @@
       var player;
       function onYouTubeIframeAPIReady() {
         player = new YT.Player('player', {
-          height: '360',
-          width: '640',
-          videoId: 't9gAxG6eVMc',
+          height: '600',
+          width: '500',
+          videoId: 'qXEnruyOHCQ',
           events: {
             'onReady': onPlayerReady,
             'onStateChange': onPlayerStateChange

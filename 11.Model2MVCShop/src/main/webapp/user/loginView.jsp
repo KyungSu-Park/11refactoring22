@@ -17,13 +17,20 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+	  <script src="https://unpkg.com/feather-icons@4.28.0/dist/feather.min.js"></script>
 	
 	<!--  ///////////////////////// CSS ////////////////////////// -->
 	<style>
-    	 body >  div.container{ 
-        	border: 3px solid #D6CDB7;
-            margin-top: 10px;
-        }
+    	   body {
+         background: url("https://source.unsplash.com/X-Bu9X6gok0/2400x1600") no-repeat center center fixed;
+         -webkit-background-size: cover;
+         -moz-background-size: cover;
+         -o-background-size: cover;
+         background-size: cover;
+         padding: 2rem;
+       }
+        
+               
     </style>
     
     <!--  ///////////////////////// JavaScript ////////////////////////// -->
@@ -71,11 +78,9 @@
 <body>
 
 	<!-- ToolBar Start /////////////////////////////////////-->
-	<div class="navbar  navbar-default">
-        <div class="container">
-        	<a class="navbar-brand" href="/index.jsp">Model2 MVC Shop</a>
-   		</div>
-   	</div>
+
+
+
    	<!-- ToolBar End /////////////////////////////////////-->	
 	
 	<!--  화면구성 div Start /////////////////////////////////////-->
@@ -83,16 +88,14 @@
 		<!--  row Start /////////////////////////////////////-->
 		<div class="row">
 		
-			<div class="col-md-6">
-					<img src="/images/logo-spring.png" class="img-rounded" width="100%" />
-			</div>
+		
 	   	 	
 	 	 	<div class="col-md-6">
 	 	 	
 		 	 	<br/><br/>
 				
-				<div class="jumbotron">	 	 	
-		 	 		<h1 class="text-center">로 &nbsp;&nbsp;그 &nbsp;&nbsp;인</h1>
+				 	 	
+		 	 		<h1 class="text-center"> &nbsp;&nbsp;로 &nbsp;&nbsp;그 &nbsp;&nbsp;인</h1>
 
 			        <form class="form-horizontal">
 		  
@@ -118,7 +121,7 @@
 					  </div>
 			
 					</form>
-			   	 </div>
+			   	 
 			
 			</div>
 			

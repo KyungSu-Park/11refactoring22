@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
-	
+		<script type="text/javascript" src="../javascript/calendar.js"></script>
 
 	
 	<script type="text/javascript">
@@ -56,8 +56,8 @@
 	
 		//document.detailForm.action='/product/addProduct';
 		//document.detailForm.submit();
-		
-		$("form").attr("method", "POST").attr("action", "/product/addProduct").attr("enctype", "multipart/form-data").submit();
+		alert(name);
+		$($("form")[0]).attr("method", "POST").attr("action", "/product/addProduct").submit();
 	}
 	
 	/*============= jQuery 변경 주석처리 =============
@@ -102,13 +102,13 @@
         
    	
    	<!-- ToolBar End /////////////////////////////////////-->
-	
+	<!-- form Start /////////////////////////////////////-->
 	<div class="container">
 		<div></div>
 		<div class="page-header text-center">상 품 등 록</div>
 		
 		<!-- form Start /////////////////////////////////////-->
-		<form class="form-horizontal">
+		<form class="form-horizontal" enctype="multipart/form-data">
 		
 		  <div class="form-group">
 		    <label for="prodName" class="col-sm-offset-1 col-sm-3 control-label">물품명</label>
@@ -136,7 +136,7 @@
 		  </div>
 		  
 		  <div class="form-group">
-		    <label for="userName" class="col-sm-offset-1 col-sm-3 control-label">제조일자</label>
+		    <label for="prodManuDate" class="col-sm-offset-1 col-sm-3 control-label">제조일자</label>
 		    <div class="col-sm-4">
 		      <input type="text" class="form-control" id="manuDate" name="manuDate">
 		      <img src="../images/ct_icon_date.gif" width="15" height="15"/>
@@ -144,7 +144,7 @@
 		  </div>
 		  
 		  <div class="form-group">
-		    <label for="ssn" class="col-sm-offset-1 col-sm-3 control-label">가격</label>
+		    <label for="price" class="col-sm-offset-1 col-sm-3 control-label">가격</label>
 		    <div class="col-sm-4">
 		      <input type="text" class="form-control" id="price" name="price" placeholder="가격">
 		      <span id="helpBlock" class="help-block">
@@ -154,7 +154,7 @@
 		  </div>
 		  
 		  <div class="form-group">
-		    <label for="ssn" class="col-sm-offset-1 col-sm-3 control-label">상품이미지</label>
+		    <label for="image" class="col-sm-offset-1 col-sm-3 control-label">상품이미지</label>
 		    <div class="col-sm-4">
 		      <input multiple="multiple" type="file" name="image" class="ct_input_g" 
 							style="width: 200px; height: 19px" maxLength="13"/>
@@ -168,7 +168,7 @@
 		    </div>
 		  </div>
 		</form>
-		<!-- form Start /////////////////////////////////////-->
+		
 		
  	</div>
 	<!--  화면구성 div end /////////////////////////////////////-->
